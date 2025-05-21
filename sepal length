@@ -1,0 +1,14 @@
+import sns
+import pd
+iris = sns.load_dataset('iris')
+print(iris.head())
+bins = [0, 5, 6, 7, 8, 9]
+labels = ['<5', '5-6', '6-7', '7-8', '8-9']
+iris['sepal_length_bin'] = pd.cut(iris['sepal_length'], bins=bins, labels=labels, right=False)
+sepal_length_counts = iris['sepal_length_bin'].value_counts().sort_index()
+colors = ['yellow', 'red', 'purple', 'blue', 'black']
+plt.bar(sepal_length_counts.index, sepal_length_counts.values, color=colors)
+plt.xlabel('Sepal Length Range')
+plt.ylabel('Count')
+plt.title('Sepal Length Distribution from Iris Dataset')
+plt.show()
